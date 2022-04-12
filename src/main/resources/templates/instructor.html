@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Instructor Page</title>
+</head>
+
+<body>
+	<form th:action="@{/instructor/}" method="POST" th:object="${bean}">
+		<label for="firstName">First Name</label>
+		<input type="text" th:field="*{firstName}" />
+
+		<label for="lastName">Last Name</label>
+		<input type="text" th:field="*{lastName}" />
+
+		<label for="email">Email</label>
+		<input type="email" th:field="*{email}" />
+
+		<label for="youtubeChannel">youtube channel</label>
+		<input type="text" th:field="*{youtubeChannel}" />
+
+		<label for="hobby">Hobby</label>
+		<input type="text" th:field="*{hobby}" />
+
+		<input type="submit" value="create" style="margin: 0 1rem;"/>
+	</form>
+	<br />
+	
+
+	<table>
+		<tbody>
+			<tr th:each="info : ${list}">
+				<td th:text="${info.firstName}"></td>
+				<td th:text="${info.lastName}"></td>
+				<td th:text="${info.email}"></td>
+				<td th:text="${info.getInstructorDetail().youtubeChannel}"></td>
+				<td th:text="${info.getInstructorDetail().hobby}"></td>
+				<td>
+					<a th:href="@{/instructor/delete(id=${info.id})}"><button type="button">Delete</button></a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+
+</html>
